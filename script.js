@@ -17,7 +17,11 @@ let wdgt = document.querySelector('#widget-thingy');
 
 document.querySelector('.search-form').onsubmit = function() {event.preventDefault(); spotlight()};
 
+let songContainer = document.querySelector(".s-results");
 
+songContainer.addEventListener('click', function(e){
+  alert(e.target.parentElement.dataset.trackUrl);
+});
 // function searchCap(query) {
 //   console.log(query);
 // };
@@ -42,10 +46,8 @@ function spotlight() {
       const info = tracksFields[idx];
       let songBox = document.createElement("div");
 
-      let songContainer = document.querySelector(".s-results");
-
       songBox.classList.add("songBox");
-
+      songBox.setAttribute('data-track-url', info.uri);
       songBox.addEventListener('click', function (){
         let widgetIframe = document.getElementById('widget-thingy'),
           widget = SC.Widget(widgetIframe),
